@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Home</title>
+    <title>Admin Page</title>
+</head>
+<body>
+    <nav>
+        <a href="/login">Logout</a>
+    </nav>
+
+    <h2>Room Bookings</h2>
+    <p>INFO: Remove will delete booking and class</p>
+    <table>
+        <tr>
+            <th>Class ID</th>
+            <th>Room ID</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Remove</th>
+        </tr>
+        {% for row in bookings %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td><a href='/deletebooking?id={{ row[0] }}'>Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Classes</h2>
+    <table>
+        <tr>
+            <th>Class ID</th>
+            <th>Name</th>
+            <th>Trainer ID</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Date</th>
+            <th>Start time</th>
+            <th>End Time</th>
+            <th>Capacity</th>
+            <th>Number of Participants</th>
+            <th>Edit</th>
+        </tr>
+        {% for row in classes %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+            <td>{{ row[8] }}</td>
+            <td>{{ row[9] }}</td>
+            <td><a href="/editclass?id={{ row[10] }}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add Class</h2>
+    <form action="/addclass" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" name="name"><br>
+        
+        <label for="trainer_id">Trainer ID:</label><br>
+        <input type="text" name="trainer_id"><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea name="description"></textarea><br>
+        
+        <label for="cost">Cost:</label><br>
+        <input type="text" name="cost"><br>
+        
+        <label for="capacity">Capacity:</label><br>
+        <input type="text" name="capacity"><br><br>
+
+        <label for="date">Date:</label>
+        <input value="00-00-0000" type="date" id="date" name="date"><br><br>
+        
+        <label for="start_time">Start Time:</label>
+        <input value="00:00:00" type="time" id="start_time" name="start_time"><br><br>
+        
+        <label for="end_time">End Time:</label>
+        <input value="00:00:00" type="time" id="end_time" name="end_time"><br><br>
+    
+        <select name="room">
+            <option value="Main Gym">Main gym</option>
+            <option value="Active Room">Active Room</option>
+            <option value="Cardio Room">Cardio Room</option>
+            <option value="Spin Room">Spin Room</option>
+        </select><br><br>
+        
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+
+    <h2>Private Sessions</h2>
+    <table>
+        <tr>
+            <th>Session ID</th>
+            <th>Trainer ID</th>
+            <th>Member ID</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Location</th>
+        </tr>
+        {% for row in sessions %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Billing History</h2>
+    <table>
+        <tr>
+            <th>Billing ID</th>
+            <th>Admin ID</th>
+            <th>Member ID</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Remove</th>
+        </tr>
+        {% for row in billing %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td><a href="/deletebill?id={{ row[0] }}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add Billing</h2>
+    <form action="#" method="POST">
+        <label for="member">Member ID: </label><br>
+        <input type="text" name="member"><br><br>
+
+        <label for="session">Session type: </label><br>
+        <input type="text" name="session"><br><br>
+
+        <label for="amount">Amount: </label><br>
+        <input type="text" name="amount"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+    <h2>Equipment Matinence</h2>
+    <table>
+        <tr>
+            <th>Equipment ID</th>
+            <th>Equipment Name</th>
+            <th>Maintenance Date</th>
+            <th>Location</th>
+        </tr>
+        {% for row in equipment %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <form action="/updateeqip" method = 'post'>
+        <label for="id">Equipment id</label><br>
+        <input type="text" name="id" required><br><br>
+
+        <label for="date">Updated Date</label><br>
+        <input type="date" name="date" required><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>

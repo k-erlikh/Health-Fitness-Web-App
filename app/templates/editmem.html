@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Edit Info</title>
+</head>
+<body>
+    <nav>
+        <a href="/schedule">Schedule Session</a>
+        <a href="/member">Member page</a>
+        <a href="/login">Logout</a>
+    </nav>
+    <h1>{{result}}</h1>
+    <form action="/editmem" method="POST">
+        <label for="first_name">First Name:</label><br>
+        <input type="text" id="first_name" name="first_name" maxlength="20"><br><br>
+        
+        <label for="last_name">Last Name:</label><br>
+        <input type="text" id="last_name" name="last_name" maxlength="20"><br><br>
+        
+        <label for="phone_number">Phone Number:</label><br>
+        <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}" maxlength="10"><br><br>
+        
+        <label for="birthday">Birthday:</label><br>
+        <input type="date" id="birthday" name="birthday"><br><br>
+        
+        <label for="card_number">Card Number:</label><br>
+        <input type="text" id="card_number" name="card_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br><br>
+        
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>

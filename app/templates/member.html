@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <a id="name">{{user[0][0]}} {{user[0][1]}}</a>
+        <a href="/schedule">Schedule Session</a>
+        <a href="/editmem">Edit Info</a>
+        <a href="/login">Logout</a>
+    </nav>
+    <h1>Member Home Page</h1>
+    <h2>Upcoming Classes</h2>
+    <table>
+        <thead>
+          <tr>
+            <th>Room ID</th>
+            <th>Class Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for class_info in classes %}
+          <tr>
+            <td>{{ class_info[0]}}</td>
+            <td>{{ class_info[1] }}</td>
+            <td>{{ class_info[2] }}</td>
+            <td>{{ class_info[3] }}</td>
+            <td>{{ class_info[4] }}</td>
+            <td>{{ class_info[5] }}</td>
+            <td><a href="/memremoveclass?id={{ class_info[6] }}">Remove</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    <h2>Upcoming Private Sessions</h2>
+    <table>
+    <thead>
+        <tr>
+        <th>Session Type</th>
+        <th>Trainer Name</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Location</th>
+        <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session_info in private %}
+        <tr>
+        <td>{{ session_info[0] }}</td>
+        <td>{{ session_info[1] }}</td>
+        <td>{{ session_info[2] }}</td>
+        <td>{{ session_info[3] }}</td>
+        <td>{{ session_info[4] }}</td>
+        <td>{{ session_info[5] }}</td>
+        <td><a href="/memremovesession?id={{ session_info[6] }}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+    {% if metrics %}
+    <h2>Health Metrics</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Weight</th>
+                <th>Resting Heart Rate</th>
+                <th>Pace</th>
+                <th>Blood Pressure</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for metric in metrics %}
+            <tr>
+                <td>{{ metric[1] }}</td>
+                <td>{{ metric[2] }}</td>
+                <td>{{ metric[3] }}</td>
+                <td>{{ metric[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No health metrics available.</p>
+{% endif %}
+    <h3>Update metrics</h3>
+    <form action="#" method="POST">
+        <label for="weight">Weight</label><br>
+        <input type="text" name="weight"><br><br>
+
+        <label for="rest_heart_rate">Heart rate</label><br>
+        <input type="text" name="rest_heart_rate"><br><br>
+
+        <label for="pace">Pace</label><br>
+        <input type="text" name="pace"><br><br>
+
+        <label for="blood_pressure">Blood pressure</label><br>
+        <input type="text" name="blood_pressure"><br><br>
+
+       <button type="submit">Update</button>
+    </form>
+
+    <h2>Exercise Goals</h2>
+    <table>
+    <thead>
+        <tr>
+        <th>Routine Name</th>
+        <th>Sets</th>
+        <th>Reps</th>
+        <th>Weight (kg)</th>
+        <th>Distance (km)</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for goal in goals %}
+        <tr>
+        <td>{{ goal[0] }}</td>
+        <td>{{ goal[1] }}</td>
+        <td>{{ goal[2] }}</td>
+        <td>{{ goal[3] }}</td>
+        <td>{{ goal[4] }}</td>
+        <td>{{ goal[5] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <div>
+        <h3>Set goal</h3>
+        <form action="/goal" method="POST">
+            <label for="routine_name">Routine Name:</label><br>
+            <input value="" type="text" name="routine_name" maxlength="50" required><br><br>
+            
+            <label for="sets">Sets:</label><br>
+            <input value="" type="number" name="sets"><br><br>
+            
+            <label for="reps">Reps:</label><br>
+            <input value="" type="number" name="reps"><br><br>
+            
+            <label for="weight">Weight:</label><br>
+            <input value="" type="number" name="weight"><br><br>
+            
+            <label for="distance">Distance:</label><br>
+            <input value="" type="number" name="distance"><br><br>
+            
+            <label for="description">Description</label><br>
+            <input type="text" name="description"><br><br>
+
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <h2>Past Exercise Routines</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Routine Name</th>
+          <th>Sets</th>
+          <th>Reps</th>
+          <th>Weight (kg)</th>
+          <th>Distance (km)</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for routine in routines %}
+        <tr>
+          <td>{{ routine[0] }}</td>
+          <td>{{ routine[1] }}</td>
+          <td>{{ routine[2] }}</td>
+          <td>{{ routine[3] }}</td>
+          <td>{{ routine[4] }}</td>
+          <td>{{ routine[5] }}</td>
+          <td>{{ routine[6] }}</td>
+          <td>{{ routine[7] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div>
+        <h3>Add exercise</h3>
+        <form action="/addexercise" method="POST">
+            <label for="routine_name">Routine Name:</label><br>
+            <input value="" type="text" id="routine_name" name="routine_name" maxlength="50" required><br><br>
+            
+            <label for="sets">Sets:</label><br>
+            <input value="" type="number" id="sets" name="sets"><br><br>
+            
+            <label for="reps">Reps:</label><br>
+            <input value="" type="number" id="reps" name="reps"><br><br>
+            
+            <label for="weight">Weight:</label><br>
+            <input value="" type="number" id="weight" name="weight"><br><br>
+            
+            <label for="distance">Distance:</label><br>
+            <input value="" type="number" id="distance" name="distance"><br><br>
+            
+            <label for="date">Date:</label><br>
+            <input value="00-00-0000" type="date" id="date" name="date"><br><br>
+            
+            <label for="start_time">Start Time:</label><br>
+            <input value="00:00:00" type="time" id="start_time" name="start_time"><br><br>
+            
+            <label for="end_time">End Time:</label><br>
+            <input value="00:00:00" type="time" id="end_time" name="end_time"><br><br>
+        
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <h2>Class History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Room ID</th>
+          <th>Class Name</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for class_info in history %}
+        <tr>
+          <td>{{ class_info[0] }}</td>
+          <td>{{ class_info[1] }}</td>
+          <td>{{ class_info[2] }}</td>
+          <td>{{ class_info[3] }}</td>
+          <td>{{ class_info[4] }}</td>
+          <td>{{ class_info[5] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Session History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Session Type</th>
+          <th>Trainer Name</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for session_info in completed %}
+        <tr>
+          <td>{{ session_info[0] }}</td>
+          <td>{{ session_info[1] }}</td>
+          <td>{{ session_info[2] }}</td>
+          <td>{{ session_info[3] }}</td>
+          <td>{{ session_info[4] }}</td>
+          <td>{{ session_info[5] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Billing History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Billing ID</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Amount ($CAD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bill_info in billing %}
+        <tr>
+          <td>{{ bill_info[0] }}</td>
+          <td>{{ bill_info[1] }}</td>
+          <td>{{ bill_info[2] }}</td>
+          <td>{{ bill_info[3] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+</body>
+</html>

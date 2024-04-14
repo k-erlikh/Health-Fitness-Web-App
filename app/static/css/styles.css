@@ -1,0 +1,92 @@
+*{
+    font-family: "Roboto", sans-serif;
+}
+body{
+    background-color: #e3edf2;
+    color:#091c38;
+}
+table {
+    font-size: medium;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+table thead tr{
+    background-color: #1444ac;
+    color: #ffffff;
+    text-align: left;
+}
+table th,
+table td {
+        padding: 12px 15px;
+    }
+table tbody td {
+    border: 1px solid #bfc2d6;
+    background-color: #ffffff;
+}
+table tbody tr {
+    border-bottom: 1px solid #999cab;
+}
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+nav{
+    display: flex;
+    justify-content:flex-start;
+    background-color: #ffffff;
+    border-bottom: 1px solid #a7aec1;
+    margin:0;
+    padding: 10px; 
+    width:100%;
+}
+nav a{
+    display: inline-block;
+    height: 55px;
+    margin-right: 20px;
+    color: rgb(10, 73, 82);
+    text-align: center;
+    line-height: 55px;
+    text-decoration: none;
+}
+nav a:first-child {
+    margin-left: 0;
+}   
+h1{
+    font-size:x-large;
+    align-items: center;
+}
+h2{
+    font-size: large;
+    margin-top: 20px;
+}
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #126dce;
+    color: #ffffff;
+    font-size:14px;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+form button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #126dce;
+    color: #fff;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+form button:hover {
+    background-color: #074d97;
+}
+button a{
+    color: aliceblue;
+    text-decoration: none;
+}

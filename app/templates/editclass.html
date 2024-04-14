@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Admin: Edit class</title>
+</head>
+<body>
+    <nav>
+        <a href="/admin">Back to main page </a>
+        <a href="/login">Logout</a>
+    </nav>
+    <h2>Edit Class</h2>
+    <form action="#" method="post">
+        <label for="name">Name:</label><br>
+        <input value="{{ name }}" type="text" name="name"><br><br>
+                
+        <label for="trainer_id">Trainer ID:</label><br>
+        <input value="{{ trainer_id }}" type="text" name="trainer_id"><br><br>
+                
+        <label for="description">Description:</label><br>
+        <textarea name="description" rows="4" cols="50">{{ description }}</textarea><br><br>
+                
+        <label for="cost">Cost:</label><br>
+        <input value="{{ cost }}" type="text" name="cost"><br><br>
+                
+        <label for="date">Date:</label><br>
+        <input value="{{ date }}" type="date" name="date"><br><br>
+                
+        <label for="start_time">Start Time:</label><br>
+        <input value="{{ start_time }}" type="time" name="start_time"><br><br>
+                
+        <label for="end_time">End Time:</label><br>
+        <input value="{{ end_time }}" type="time" name="end_time"><br><br>
+        
+        <label for="location">Location</label><br>
+        <input value = {{ location }} type="text"><br><br>
+
+        <label for="capacity">Capacity:</label><br>
+        <input value="{{ capacity }}" type="number" name="capacity"><br><br>
+        
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>

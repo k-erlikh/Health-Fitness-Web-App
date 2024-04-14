@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Log In</title>
+</head>
+<body>
+    <nav>
+        <a href="/register">Create account</a>
+    </nav>
+    <h1>Member Log-in</h1>
+    <p>{{error}}</p>
+    <form action="#" method="post">
+        <label for="username">Username: </label>
+        <input type="text" name="username" required><br><br>
+
+        <label for="password">Password: </label>
+        <input type="password" name="password" required><br><br>
+
+        <label for="type">Account type</label>
+        
+        <select name="type"  multiple size="3">
+            <option value="member">Member</option>
+            <option value="trainer">Trainer</option>
+            <option value="admin">Admin</option>
+        </select><br><br>
+
+        <button type="submit">Log In</button>
+    </form>
+</body>
+</html>

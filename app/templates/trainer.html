@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Trainer Page</title>
+</head>
+<body>
+    <nav>
+        <a href="/login">Logout</a>
+    </nav>
+    <h1>Trainer Main Page</h1>
+
+    <h2>Unbooked Availability</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in availability %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td><button><a href="/removesession?id={{ row[3] }}">Remove</a></button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Upcoming Sessions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Session Type</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in sessions %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Add Availability</h2>
+    <p>Each session is 1 hour long.</p>
+    <form action="/add" method="POST">
+        <label for="date">Date</label>
+        <input type="date" name="date">
+        <label for="time">Start time</label>
+        <input type="time" name="time">
+        <button type="submit">Add</button>
+    </form>
+
+    <div>
+        <h2>Member Lookup</h2>
+        <form action="/lookup" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+            <button type="submit">Search</button>
+        </form>
+        <ul>
+            {% for member in members %}
+                <li>
+                    <b>First name:</b> {{ member[0] }}, <b>Last name:</b> {{ member[1] }}<br>
+                    -Metrics-<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Weight: {{ member[2] }}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Resting Heart Rate: {{ member[3] }}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Pace: {{ member[4] }}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Blood pressure: {{ member[5] }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h2>Completed Sessions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Trainer ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Session Type</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in completed %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[8] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

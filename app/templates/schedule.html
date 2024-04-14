@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Schedule</title>
+</head>
+<body>
+    <nav>
+        <a href="/member">Member Page</a>
+        <a href="/editmem">Edit Info</a>
+        <a href="/login">Logout</a>
+    </nav>
+    <h2>Group Classes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Trainer Name</th>
+                <th>Description</th>
+                <th>Cost ($CAD)</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Avaliable Spots</th>
+                <th>Sign Up</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for class_row in classes %}
+            <tr>
+                <td>{{ class_row[0] }}</td>
+                <td>{{ class_row[1] }}</td>
+                <td>{{ class_row[2] }}</td>
+                <td>{{ class_row[3] }}</td>
+                <td>{{ class_row[4] }}</td>
+                <td>{{ class_row[5] }}</td>
+                <td>{{ class_row[6] }}</td>
+                <td>{{ class_row[7] }}</td>
+                <td><button><a href="/addclassmem?id={{ class_row[8] }}">Register</a></button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Private sessions</h2>
+    <p>All sessions are $100 CAD</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Trainer Name</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Location</th>
+                <th>Sign up</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session_row in session %}
+            <tr>
+                <td>{{ session_row[0] }}</td>
+                <td>{{ session_row[1] }}</td>
+                <td>{{ session_row[2] }}</td>
+                <td>{{ session_row[3] }}</td>
+                <td>Main gym</td>
+                <td><button><a href="/addsession?id={{ session_row[4]}}">Register</a></button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

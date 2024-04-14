@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Create an account</title>
+</head>
+<body>
+    <nav>
+        <a href="/login">Log in</a>
+    </nav>
+    <h1>Create a member account.</h1>
+    <p>{{error}}</p>
+    <form action="#" method="post">
+        <label for="username">Username: </label>
+        <input type="text" name="username" maxlength="50" required><br><br>
+        
+        <label for="password">Password: </label>
+        <input type="password" name="password" maxlength="50" required><br><br>
+        
+        <label for="first_name">First name: </label>
+        <input type="text" name="first_name" maxlength="50" required><br><br>
+        
+        <label for="last_name"> Last name: </label>
+        <input type="text" name="last_name" maxlength="50" required><br><br>
+        
+        <label for="birthday">Birthday: </label>
+        <input type="date" name="birthday" required><br><br>
+        
+        <label for="phone_number">Phone number: </label>
+        <input type="tel" name="phone_number" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br><br>
+        
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

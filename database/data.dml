@@ -1,0 +1,38 @@
+INSERT INTO admin ("admin_id", "password", "first_name", "last_name") VALUES 
+('admin', 'secure', 'First', 'Last');
+
+INSERT INTO member ("member_id", "password", "first_name", "last_name", "phone_number", "register_date", "birthday", "card_number") VALUES
+('cat123', 'test', 'Cat', 'Dog', '111-111-1111', '2024-04-11', '2000-01-01', NULL),
+('dog123', 'test', 'Woof', 'Dog', '111-111-1111', '2024-03-16', '2000-01-02', NULL);
+
+INSERT INTO trainer ("trainer_id", "password", "first_name", "last_name", "phone_number", "description") VALUES
+('pullupmaster', 'idopullups', 'Lats', 'Back', '111-111-1111', 'I really love to do pullups I will train you to do 100 pullups'),
+('spinnin', 'password', 'Spin', 'Master', '111-111-1111', 'Loves bikes');
+
+INSERT INTO room ("room_id", "description") VALUES
+('Main Gym', 'Big gym'),
+('Spin Room', 'Plenty of bikes'),
+('Cardio Room', 'Keep on running'),
+('Active Room', 'Where activities happen');
+
+INSERT INTO class ("name", "trainer_id", "description", "cost", "capacity") VALUES 
+('Zumba', 'pullupmaster', 'This is a zumba class', 50, 100),
+('Spin class', 'spinnin', 'Spinnin on bikes', 30, 15),
+('Zumba', 'pullupmaster', 'Music and fun', 50, 100);
+
+INSERT INTO billing ("admin_id", "member_id", "type", "date", "amount") VALUES 
+('admin', 'cat123', 'Spin Class', '2024-04-12', 30),
+('admin', 'cat123', 'Private', '2024-04-12', 100);
+
+INSERT INTO exercise ("routine_name", "sets", "reps", "weight", "distance", "date", "start_time", "end_time") VALUES
+('Pull ups', 10, 10, NULL, NULL, '2024-04-12', NULL, NULL),
+('Run', NULL, NULL, NULL, 10,'2024-04-10', NULL, NULL),
+('Squats', 4, 3, 150, NULL, NULL, NULL, NULL);
+
+INSERT INTO equipment ("equipment_name", "maintinence_date", "location") VALUES
+('Pull Up Machine', '2024-04-13', 'Main Gym'),
+('Squat Rack', '2024-04-11', 'Main Gym'),
+('Bike', '2024-04-13', 'Spin Room');
+
+INSERT INTO metrics ("member_id", "weight", "rest_heart_rate", "pace", "blood_pressure", "sleep_end") VALUES
+('cat123', 123, 80, 122, '120/80', NULL);
