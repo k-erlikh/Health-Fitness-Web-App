@@ -1,5 +1,5 @@
-# COMP3005-TERM-PROJECT
-Health and Fitness Web App
+# Health and Fitness Web App
+
 
 <h2>Description</h2>
 
